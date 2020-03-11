@@ -17,6 +17,7 @@ INFLUXDB_HOST=${INFLUXDB_HOST:-127.0.0.1}
 INFLUXDB_PORT=${INFLUXDB_PORT:-8086}
 INFLUXDB_DB=${INFLUXDB_DB:-homer}
 
+METRICS_DISABLED=${METRICS_DISABLED:-false}
 
 if [ -f /app/myconfig.js ]; then
 
@@ -37,6 +38,11 @@ if [ -f /app/myconfig.js ]; then
    if [ -n "$HEPOP_PROTO" ]; then sed -i "s/HEPOP_PROTO/${HEPOP_PROTO}/g" /app/myconfig.js; fi
    if [ -n "$HEPOP_DEBUG" ]; then sed -i "s/HEPOP_DEBUG/${HEPOP_DEBUG}/g" /app/myconfig.js; fi
 
+   if [ "$METRICS_DISABLED" != "false" ]; then
+	   sed -i "s/METRICS/metrics_disabled/g" /app/myconfig.js
+   else
+	   sed -i "s/METRICS/metrics/g" /app/myconfig.js
+   fi
 
    echo "Pre-Flight provisioning completed!"
 

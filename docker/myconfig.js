@@ -20,7 +20,7 @@
   	  "password": "PGSQL_PASSWORD"
   	}
   },
-  "metrics": {
+  "METRICS": {
 	"influx":{
 	  "period": 30000,
 	  "expire": 300000, 
